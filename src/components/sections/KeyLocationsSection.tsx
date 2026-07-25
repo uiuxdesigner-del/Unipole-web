@@ -112,12 +112,13 @@ export function KeyLocationsSection() {
             as="h2"
             text="Key Locations"
             className="font-semibold uppercase leading-[0.98] tracking-tight text-brand-black"
+            style={{ fontSize: "var(--text-h2)" }}
             start="top 90%"
           />
           <TextReveal
             as="p"
             text="Unipole placements across Tamil Nadu and beyond, spanning the road types and traffic zones that keep a brand consistently visible."
-            className="mt-6 text-base text-brand-muted sm:text-lg"
+            className="mt-6 text-base text-brand-secondary sm:text-lg"
             start="top 90%"
           />
         </div>

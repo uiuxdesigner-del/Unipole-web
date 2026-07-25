@@ -1,4 +1,10 @@
-import type { Unipole, UnipoleFilters, UnipoleStatus, IlluminationType } from "@/types/unipole";
+import type {
+  Unipole,
+  UnipoleFilters,
+  UnipoleStatus,
+  IlluminationType,
+  DisplaySides,
+} from "@/types/unipole";
 
 export const EMPTY_FILTERS: UnipoleFilters = {
   search: "",
@@ -29,6 +35,17 @@ export const ILLUMINATION_LABELS: Record<IlluminationType, string> = {
   "back-lit": "Back-lit",
   "non-illuminated": "Non-illuminated",
 };
+
+export const DISPLAY_SIDES_LABELS: Record<DisplaySides, string> = {
+  single: "Single-sided",
+  double: "Double-sided",
+  triple: "Triple-sided",
+};
+
+/** Resolves a unipole by id for the `?site=` modal — returns undefined for unknown ids, never throws. */
+export function findUnipoleById(unipoles: Unipole[], id: string): Unipole | undefined {
+  return unipoles.find((unipole) => unipole.id === id);
+}
 
 function normalize(value: string): string {
   return value.trim().toLowerCase();

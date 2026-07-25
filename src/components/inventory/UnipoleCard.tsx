@@ -5,18 +5,19 @@ import Image from "next/image";
 import { MapPin, Ruler, Sun, ArrowUpRight, Plus, ImageOff } from "lucide-react";
 import type { Unipole } from "@/types/unipole";
 import { STATUS_LABELS, STATUS_BADGE_CLASSES, ILLUMINATION_LABELS } from "@/lib/inventory";
+import { useOpenUnipoleModal } from "@/hooks/useUnipoleModal";
 
 interface UnipoleCardProps {
   unipole: Unipole;
 }
 
 /**
- * Phase 3A: "View Details" and "Add to Campaign" are honest placeholders — the detail modal
- * and campaign-plan drawer are Phase 3B. Clicking either shows a small inline note instead of
- * pretending to open a modal or save a real selection.
+ * Phase 3B-1: "View Details" opens the real product-detail modal via `?site=<id>`. "Add to
+ * Campaign" is still a Phase 3B-1 placeholder — the campaign-plan drawer is Phase 3B-2.
  */
 export function UnipoleCard({ unipole }: UnipoleCardProps) {
-  const [feedback, setFeedback] = useState<"details" | "campaign" | null>(null);
+  const openModal = useOpenUnipoleModal();
+  const [feedback, setFeedback] = useState<"campaign" | null>(null);
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-brand-border bg-brand-white transition-all duration-300 hover:border-[#D5D5D0] motion-safe:hover:-translate-y-0.5">
@@ -71,7 +72,9 @@ export function UnipoleCard({ unipole }: UnipoleCardProps) {
         <div className="mt-2 flex flex-col gap-2 sm:flex-row">
           <button
             type="button"
-            onClick={() => setFeedback("details")}
+            data-view-details-id={unipole.id}
+            aria-haspopup="dialog"
+            onClick={() => openModal(unipole.id)}
             className="inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded-full border border-brand-border-strong px-4 text-sm font-semibold text-brand-black transition-colors hover:border-brand-black"
           >
             View Details
@@ -92,11 +95,9 @@ export function UnipoleCard({ unipole }: UnipoleCardProps) {
           </button>
         </div>
 
-        {feedback && (
+        {feedback === "campaign" && (
           <p role="status" className="text-xs text-brand-muted">
-            {feedback === "details"
-              ? "Full site details arrive in the next phase."
-              : "Noted — campaign planning arrives in the next phase."}
+            Noted — campaign planning arrives in the next phase.
           </p>
         )}
       </div>

@@ -28,12 +28,13 @@ export function WhatIsUnipoleSection() {
               as="h2"
               text="What Is a Unipole?"
               className="font-semibold uppercase leading-[0.98] tracking-tight text-brand-black"
+              style={{ fontSize: "var(--text-h2)" }}
               start="top 90%"
             />
             <TextReveal
               as="p"
               text="A unipole is a large-format outdoor structure mounted on a single engineered pole, elevated above rooftops and street clutter so a brand is visible from far down the road — day and night."
-              className="mt-6 max-w-lg text-base text-brand-muted sm:text-lg"
+              className="mt-6 max-w-lg text-base text-brand-secondary sm:text-lg"
               start="top 90%"
             />
 
@@ -43,7 +44,7 @@ export function WhatIsUnipoleSection() {
               className="mt-10 aspect-[4/5] w-full rounded-3xl"
               speed={motionConfig.parallax.background}
             >
-              <div className="h-full w-full bg-gradient-to-br from-brand-dark via-brand-black to-brand-red/30" />
+              <div className="h-full w-full bg-gradient-to-br from-brand-black via-brand-black/85 to-brand-red/40" />
             </ParallaxMedia>
           </div>
 
@@ -63,7 +64,7 @@ export function WhatIsUnipoleSection() {
                 >
                   {feature.title}
                 </h3>
-                <p className="mt-2 text-brand-muted">{feature.description}</p>
+                <p className="mt-2 text-brand-secondary">{feature.description}</p>
               </FadeBlurReveal>
             ))}
           </div>

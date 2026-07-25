@@ -89,7 +89,7 @@ export function WhyChooseUnipoleSection() {
         sectionRef.current = node;
         scopeRef.current = node;
       }}
-      className="relative bg-brand-black py-24 text-brand-white sm:py-32 lg:py-0"
+      className="relative bg-brand-soft py-24 text-brand-black sm:py-32 lg:py-0"
     >
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
         {/* Desktop: pinned switcher */}
@@ -98,10 +98,11 @@ export function WhyChooseUnipoleSection() {
             <TextReveal
               as="h2"
               text="Why Choose Unipole Advertising"
-              className="max-w-2xl font-semibold uppercase leading-[0.98] tracking-tight"
+              className="max-w-2xl font-semibold uppercase leading-[0.98] tracking-tight text-brand-black"
+              style={{ fontSize: "var(--text-h2)" }}
               start="top 90%"
             />
-            <div className="whitespace-nowrap pb-1 text-sm font-medium tracking-widest text-brand-white/50">
+            <div className="whitespace-nowrap pb-1 text-sm font-medium tracking-widest text-brand-muted">
               <span data-benefit-counter>01</span>
               <span className="mx-1">/</span>
               <span>{String(TOTAL).padStart(2, "0")}</span>
@@ -110,7 +111,7 @@ export function WhyChooseUnipoleSection() {
 
           <ScrollProgress
             targetRef={sectionRef}
-            className="max-w-xs bg-brand-white/10"
+            className="max-w-xs bg-brand-border"
             barClassName="bg-brand-red"
           />
 
@@ -118,12 +119,12 @@ export function WhyChooseUnipoleSection() {
             {whyUnipoleBenefits.map((benefit) => (
               <div key={benefit.title} data-benefit-panel className="absolute inset-0 max-w-3xl">
                 <h3
-                  className="font-semibold leading-tight"
+                  className="font-semibold leading-tight text-brand-black"
                   style={{ fontSize: "var(--text-display)" }}
                 >
                   {benefit.title}
                 </h3>
-                <p className="mt-6 max-w-xl text-lg text-brand-white/70">{benefit.description}</p>
+                <p className="mt-6 max-w-xl text-lg text-brand-secondary">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -145,20 +146,21 @@ export function WhyChooseUnipoleSection() {
           <TextReveal
             as="h2"
             text="Why Choose Unipole Advertising"
-            className="font-semibold uppercase leading-[0.98] tracking-tight"
+            className="font-semibold uppercase leading-[0.98] tracking-tight text-brand-black"
+            style={{ fontSize: "var(--text-h2)" }}
             start="top 90%"
           />
           {whyUnipoleBenefits.map((benefit, index) => (
             <FadeBlurReveal
               key={benefit.title}
               delay={(index % 3) * 0.05}
-              className="rounded-2xl border border-brand-white/10 bg-brand-white/5 p-6"
+              className="rounded-2xl border border-brand-border bg-brand-white p-6"
             >
               <span className="text-sm font-semibold text-brand-red">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-2 text-xl font-semibold">{benefit.title}</h3>
-              <p className="mt-2 text-brand-white/70">{benefit.description}</p>
+              <h3 className="mt-2 text-xl font-semibold text-brand-black">{benefit.title}</h3>
+              <p className="mt-2 text-brand-secondary">{benefit.description}</p>
             </FadeBlurReveal>
           ))}
         </div>

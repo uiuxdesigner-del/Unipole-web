@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useMemo } from "react";
+import { useId, useMemo, type CSSProperties } from "react";
 import { gsap } from "@/lib/gsap";
 import { useGsapContext } from "@/hooks/useGsapContext";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -12,6 +12,7 @@ interface TextRevealProps {
   text: string;
   as?: TextRevealTag;
   className?: string;
+  style?: CSSProperties;
   start?: string;
 }
 
@@ -19,7 +20,13 @@ interface TextRevealProps {
  * Word-by-word scroll reveal (masked translateY + fade). Falls back to static text when
  * `prefers-reduced-motion` is set.
  */
-export function TextReveal({ text, as: Tag = "p", className, start = "top 85%" }: TextRevealProps) {
+export function TextReveal({
+  text,
+  as: Tag = "p",
+  className,
+  style,
+  start = "top 85%",
+}: TextRevealProps) {
   const reducedMotion = useReducedMotion();
   const words = useMemo(() => text.split(" "), [text]);
   const uid = useId();
@@ -44,6 +51,7 @@ export function TextReveal({ text, as: Tag = "p", className, start = "top 85%" }
         scopeRef.current = node as HTMLElement | null;
       }}
       className={className}
+      style={style}
     >
       {words.map((word, index) => (
         <span key={`${uid}-${index}`} className="inline-block overflow-hidden align-top">

@@ -17,7 +17,7 @@ function StaticFallback() {
       className="absolute inset-0"
       style={{
         background:
-          "radial-gradient(60% 50% at 50% 30%, rgba(215,25,32,0.16), transparent 70%), radial-gradient(80% 60% at 50% 100%, rgba(255,255,255,0.06), transparent 70%)",
+          "radial-gradient(55% 45% at 50% 32%, rgba(215,25,32,0.06), transparent 70%), radial-gradient(90% 60% at 50% 100%, rgba(17,17,17,0.05), transparent 70%)",
       }}
     />
   );

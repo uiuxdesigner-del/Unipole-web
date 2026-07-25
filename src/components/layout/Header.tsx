@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import clsx from "clsx";
@@ -15,6 +15,12 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeHref, setActiveHref] = useState<string>(siteConfig.nav[0].href);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+    menuButtonRef.current?.focus();
+  };
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 48);
@@ -47,20 +53,14 @@ export function Header() {
   return (
     <header
       className={clsx(
-        "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
+        "fixed inset-x-0 top-0 z-50 text-brand-black transition-colors duration-500",
         isScrolled || mobileOpen
-          ? "bg-brand-white/95 backdrop-blur-sm border-b border-brand-border"
+          ? "border-b border-brand-border bg-brand-white/90 backdrop-blur-md"
           : "bg-transparent"
       )}
     >
       <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12">
-        <Link
-          href="#home"
-          className={clsx(
-            "text-lg font-semibold tracking-[0.18em] transition-colors",
-            isScrolled || mobileOpen ? "text-brand-black" : "text-brand-white"
-          )}
-        >
+        <Link href="#home" className="text-lg font-semibold tracking-[0.18em]">
           ADINN
         </Link>
 
@@ -70,9 +70,10 @@ export function Header() {
               key={item.href}
               href={item.href}
               className={clsx(
-                "relative py-2 text-sm font-medium transition-colors",
-                isScrolled ? "text-brand-black" : "text-brand-white",
-                activeHref === item.href ? "opacity-100" : "opacity-70 hover:opacity-100"
+                "relative py-2 text-sm font-medium transition-opacity",
+                activeHref === item.href
+                  ? "text-brand-red opacity-100"
+                  : "opacity-70 hover:opacity-100"
               )}
             >
               {item.label}
@@ -91,15 +92,11 @@ export function Header() {
             Get a Quote
           </Link>
           <button
+            ref={menuButtonRef}
             type="button"
             aria-label="Open menu"
             aria-expanded={mobileOpen}
-            className={clsx(
-              "flex h-11 w-11 items-center justify-center rounded-full transition-colors lg:hidden",
-              isScrolled || mobileOpen
-                ? "text-brand-black"
-                : "text-brand-white"
-            )}
+            className="flex h-11 w-11 items-center justify-center rounded-full text-brand-black lg:hidden"
             onClick={() => setMobileOpen(true)}
           >
             <Menu size={24} aria-hidden />
@@ -107,11 +104,7 @@ export function Header() {
         </div>
       </div>
 
-      <MobileNavigation
-        open={mobileOpen}
-        onClose={() => setMobileOpen(false)}
-        activeHref={activeHref}
-      />
+      <MobileNavigation open={mobileOpen} onClose={closeMobileMenu} activeHref={activeHref} />
     </header>
   );
 }

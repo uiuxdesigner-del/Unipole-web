@@ -1,5 +1,10 @@
 # Business Rules
 
+## Visual & motion direction
+Permanent light premium product-storytelling direction and palette are documented in
+CLAUDE.md's "Design tokens" section — do not restate them here. The central product
+interaction is a reversible, scroll-driven unipole assembly (see docs/architecture.md).
+
 ## Company
 ADINN Advertising Services Ltd — unipole (single-pole large-format) outdoor advertising.
 Central editable company/contact info lives in `src/config/site.ts` only — never duplicate

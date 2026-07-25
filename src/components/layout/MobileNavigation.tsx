@@ -44,7 +44,7 @@ export function MobileNavigation({ open, onClose, activeHref }: MobileNavigation
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation"
-          className="fixed inset-0 z-[60] flex flex-col bg-brand-black text-brand-white lg:hidden"
+          className="fixed inset-0 z-[60] flex flex-col bg-brand-white text-brand-black lg:hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -56,7 +56,7 @@ export function MobileNavigation({ open, onClose, activeHref }: MobileNavigation
               type="button"
               aria-label="Close menu"
               onClick={onClose}
-              className="flex h-11 w-11 items-center justify-center rounded-full"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-border"
             >
               <X size={24} aria-hidden />
             </button>
@@ -77,8 +77,8 @@ export function MobileNavigation({ open, onClose, activeHref }: MobileNavigation
                   href={item.href}
                   onClick={onClose}
                   className={clsx(
-                    "block py-3 text-3xl font-semibold tracking-tight transition-opacity",
-                    activeHref === item.href ? "opacity-100" : "opacity-60"
+                    "block py-3 text-3xl font-semibold tracking-tight transition-colors",
+                    activeHref === item.href ? "text-brand-red" : "text-brand-black hover:text-brand-red"
                   )}
                 >
                   {item.label}
@@ -91,7 +91,7 @@ export function MobileNavigation({ open, onClose, activeHref }: MobileNavigation
             <Link
               href="#enquiry"
               onClick={onClose}
-              className="flex min-h-[44px] w-full items-center justify-center rounded-full bg-brand-red px-5 py-3 text-base font-semibold"
+              className="flex min-h-[44px] w-full items-center justify-center rounded-full bg-brand-red px-5 py-3 text-base font-semibold text-brand-white"
             >
               Get a Quote
             </Link>
